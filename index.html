@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitPulse Gym - Get Stronger Every Day</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* Reset & Basics */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; }
+    a { text-decoration: none; }
+    ul { list-style: none; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    html { scroll-behavior: smooth; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0,0,0,0.95);
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      backdrop-filter: blur(10px);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-size: 2rem; font-weight: 800; color: #fff; }
+    .logo span { color: #ff5722; }
+    .nav-menu {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-link {
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover { color: #ff5722; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px; height: 3px; background: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 140px 0 100px;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1517838277536-f5f5be-sk_q=80&w=2070&auto=format&fit=crop') center/cover;
+      color: white;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .hero span { color: #ff5722; }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .cta-btn {
+      background: #ff5722;
+      color: white;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: 0.4s;
+    }
+    .cta-btn:hover {
+      background: #e64a19;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255,87,34,0.4);
+    }
+
+    /* Sections */
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin: 4rem 0 3rem;
+      color: #222;
+    }
+    .about-grid, .features-grid, .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .about-card, .feature-item, .price-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .about-card:hover, .price-card:hover { transform: translateY(-10px); }
+    .about-card i { font-size: 3rem; color: #ff5722; margin-bottom: 1rem; }
+    .feature-item {
+      background: linear-gradient(135deg, #ff5722, #ff8a65);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 3rem 1rem;
+    }
+    .price-card.popular {
+      transform: scale(1.08);
+      border: 4px solid #ff5722;
+      position: relative;
+    }
+    .popular-tag {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff5722;
+      color: white;
+      padding: 8px 25px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+    .price {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ff5722;
+      margin: 1rem 0;
+    }
+    .price span { font-size: 1rem; color: #666; }
+    .price-btn {
+      background: #222;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      display: block;
+      width: fit-content;
+      margin: 1.5rem auto 0;
+      transition: 0.3s;
+    }
+    .price-btn:hover { background: #ff5722; }
+
+    .final-cta {
+      background: linear-gradient(135deg, #ff5722, #ff8a65);
+      color: white;
+      text-align: center;
+      padding: 100px 0;
+      margin: 5rem 0;
+    }
+    .final-cta h2 { font-size: 3rem; margin-bottom: 1rem; }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #aaa;
+      padding: 4rem 0 2rem;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h3, .footer-col h4 { color: white; margin-bottom: 1.5rem; }
+    .footer-col a { color: #aaa; display: block; margin-bottom: 0.8rem; }
+    .footer-col a:hover { color: #ff5722; }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      color: #777;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: rgba(0,0,0,0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.4s;
+        padding: 2rem 0;
+      }
+      .nav-menu.active { left: 0; }
+      .hero h1 { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">FitPulse<span>Gym</span></div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#features" class="nav-link">Classes</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Transform Your Body.<br><span>Build Your Strength.</span></h1>
+      <p>Join the best gym in town and start your fitness journey today with expert trainers and modern equipment.</p>
+      <a href="#pricing" class="cta-btn">Join Now – First Week Free!</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container">
+    <h2 class="section-title">Why Choose FitPulse Gym?</h2>
+    <div class="about-grid">
+      <div class="about-card"><i class="fas fa-dumbbell"></i><h3>Modern Equipment</h3><p>State-of-the-art machines and free weights.</p></div>
+      <div class="about-card"><i class="fas fa-users"></i><h3>Expert Trainers</h3><p>Certified coaches to guide you.</p></div>
+      <div class="about-card"><i class="fas fa-clock"></i><h3>24/7 Access</h3><p>Workout anytime you want.</p></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="container">
+    <h2 class="section-title">Our Classes & Facilities</h2>
+    <div class="features-grid">
+      <div class="feature-item">Yoga</div>
+      <div class="feature-item">Cardio Zone</div>
+      <div class="feature-item">CrossFit</div>
+      <div class="feature-item">Zumba</div>
+      <div class="feature-item">Sauna</div>
+      <div class="feature-item">Protein Bar</div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="container">
+    <h2 class="section-title">Membership Plans</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price">₹999<span>/month</span></div>
+        <ul><li>Gym Access 6AM–10PM</li><li>Locker</li><li>Wi-Fi</li></ul>
+        <a href="#contact" class="price-btn">Get Started</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-tag">Most Popular</div>
+        <h3>Premium</h3>
+        <div class="price">₹1999<span>/month</span></div>
+        <ul><li>24/7 Access</li><li>Personal Trainer</li><li>All Classes</li><li>Sauna</li></ul>
+        <a href="#contact" class="price-btn">Join Premium</a>
+      </div>
+      <div class="price-card">
+        <h3>Annual</h3>
+        <div class="price">₹15,999<span>/year</span></div>
+        <ul><li>All Premium + 2 Months Free</li><li>Free Merch</li></ul>
+        <a href="#contact" class="price-btn">Best Deal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Get in Shape?</h2>
+      <p>Join 5,000+ members who transformed their lives at FitPulse.</p>
+      <a href="#contact" class="cta-btn large">Start Today – First Week Free</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-container">
+      <div class="footer-col">
+        <h3>FitPulse<span>Gym</span></h3>
+        <p>Your fitness journey starts here.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a><a href="#about">About</a><a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-phone"></i> +91 63937 80295</p>
+        <p><i class="fas fa-envelope"></i> info@fitpulsegym.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FitPulse Gym • Syntecxhub Internship Project 2</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
